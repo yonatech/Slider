@@ -8,11 +8,17 @@ body{
 }
 a{
     text-decoration: none;
-    color: #eee;
+    color: aliceblue;
+}
+a:hover{
+    font-size: 15px;
+    color: rgb(0, 136, 255);
+    transition: 0.5s ease-in;
 }
 header{
     width: 1140px;
     max-width: 80%;
+    min-width: 20%;
     margin: auto;
     height: 50px;
     display: flex;
@@ -88,7 +94,6 @@ header a {
 
 /* thumbnail */
 .thumbnail{
-    
     position: absolute;
     bottom: 50px;
     left: 50%;
@@ -105,7 +110,7 @@ header a {
 }
 .thumbnail .item img{
     width: 100%;
-    height:100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 20px;
 }
@@ -203,7 +208,7 @@ z-index: 1;
         border-radius: 0;     
     }
 }
-.thumbnail .item:nth-last-child(1){
+.carousel.next .thumbnail .item:nth-last-child(1){
     width: 0;
     overflow: hidden;
     animation: ShowTumbnail .5s linear 1 forwards;
@@ -213,7 +218,7 @@ z-index: 1;
         width: 150px;
     }
 }
-.thumbnail {
+.carousel.next .thumbnail {
     transform: translateX(150px);
     animation: TransformThumbnail .5s linear 1 forwards;
 }
@@ -243,9 +248,59 @@ z-index: 1;
     }
 }
 
-.thumbnail .item:nth-last-child(1){
+.carousel.prev .thumbnail .item:nth-child(1){
     width: 0;
     overflow: hidden;
     opacity: 0;
     animation: ShowTumbnail .5s linear 1 forwards;
+}
+.carousel.prev .item:nth-child(2) .author,
+.carousel.prev .item:nth-child(2) .title,
+.carousel.prev .item:nth-child(2) .topic,
+.carousel.prev .item:nth-child(2) .des,
+.carousel.prev .item:nth-child(2) .buttons{
+    animation: coutentOut 1.5s linear 1 forwards;
+}
+@keyframes coutentOut{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+.carousel.next,
+.carousel.prev{
+    pointer-events: none;
+}
+
+/*time*/
+.time{
+    
+    width: 0%;
+    height: 5px;
+    background-color: rgb(255, 166, 0);
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+}
+.carousel.next .time,
+.carousel.prev .time{
+    width: 100%;
+    animation: timeRuning 2s linear 1 forwards;
+}
+@keyframes timeRuning{
+    to{
+        width: 0%;
+    }
+}
+
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content{
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title{
+        font-size: 30px;
+   }
+    
 }
